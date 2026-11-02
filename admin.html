@@ -1,0 +1,104 @@
+<!DOCTYPE html><html lang="bn"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Admin · Vid Zone BD</title>
+<style>
+:root{--bg:#0a0a12;--card:#171726;--tx:#f5f5fa;--mu:#9b9bb4;--bd:#2b2b42;--glow1:rgba(255,45,111,.22);--glow2:rgba(255,138,0,.16);--glow3:rgba(110,60,255,.18);--g:linear-gradient(135deg,#ff2d6f,#ff8a00);color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#fff6f1;--card:#fff;--tx:#1b1424;--mu:#6d6479;--bd:#f0d9cf;--glow1:rgba(255,45,111,.14);--glow2:rgba(255,138,0,.14);--glow3:rgba(110,60,255,.08);color-scheme:light}}
+:root[data-theme="light"]{--bg:#fff6f1;--card:#fff;--tx:#1b1424;--mu:#6d6479;--bd:#f0d9cf;--glow1:rgba(255,45,111,.14);--glow2:rgba(255,138,0,.14);--glow3:rgba(110,60,255,.08);color-scheme:light}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100vh;color:var(--tx);font-family:"Hind Siliguri","Noto Sans Bengali",system-ui,sans-serif;background:radial-gradient(900px 500px at 10% -5%,var(--glow1),transparent 60%),radial-gradient(800px 500px at 95% 5%,var(--glow3),transparent 60%),radial-gradient(700px 500px at 50% 110%,var(--glow2),transparent 60%),var(--bg);background-attachment:fixed}
+button,input,select{font:inherit;color:inherit}
+.wrap{max-width:1200px;margin:0 auto;padding:0 16px 90px}
+header{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:14px 0}
+.logo{display:flex;align-items:center;gap:10px;cursor:pointer;text-decoration:none;color:var(--tx)}
+.logo b{font-size:22px;letter-spacing:1px;font-weight:800}.logo b i{font-style:normal;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent}
+.search{flex:1;min-width:180px;max-width:420px;margin-left:auto}
+input,select{width:100%;background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:10px 14px;outline:none}
+input:focus,select:focus{border-color:#ff5a4f}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:4px 0 12px;scrollbar-width:none}
+.chip{flex:none;border:1px solid var(--bd);background:var(--card);border-radius:999px;padding:8px 16px;cursor:pointer;white-space:nowrap}
+.chip.on{background:var(--g);border-color:transparent;color:#fff;font-weight:600}
+.banner{background:var(--g);border-radius:14px;padding:12px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;color:#fff;font-weight:600;margin:6px 0 20px;box-shadow:0 8px 30px var(--glow1)}
+.btn{border:0;cursor:pointer;border-radius:999px;padding:10px 20px;font-weight:700;background:var(--g);color:#fff;text-decoration:none;display:inline-flex;align-items:center;gap:6px;justify-content:center}
+.btn.w{background:#fff;color:#c2185b}.btn.wa{background:#25d366}.btn.ghost{background:var(--card);color:var(--tx);border:1px solid var(--bd)}.btn.red{background:#e5334b}
+h2{font-size:20px;margin:24px 0 12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;overflow:hidden;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 30px var(--glow1)}
+.th{position:relative;aspect-ratio:16/9;background:linear-gradient(135deg,#3a1d5c,#ff2d6f 60%,#ff8a00);display:grid;place-items:center;overflow:hidden}
+.card.short .th{aspect-ratio:9/14}.th img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.play{position:relative;width:52px;height:52px;border-radius:50%;background:rgba(255,45,111,.95);display:grid;place-items:center;box-shadow:0 0 0 6px rgba(255,255,255,.18)}
+.play:after{content:"";border-left:16px solid #fff;border-top:10px solid transparent;border-bottom:10px solid transparent;margin-left:4px}
+.tag{position:absolute;top:8px;left:8px;font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;background:#ff8a00;color:#fff;z-index:1}
+.tag.free{background:#18a957}.tag.t{left:auto;right:8px;background:rgba(0,0,0,.6)}
+.inf{padding:10px 12px}.inf h3{margin:0 0 4px;font-size:15px;line-height:1.35}.inf small{color:var(--mu)}
+.price{font-weight:800;color:#ff8a00}
+.empty{text-align:center;color:var(--mu);padding:60px 10px}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:50;display:none;align-items:center;justify-content:center;padding:16px}
+.modal.on{display:flex}
+.box{background:var(--card);border:1px solid var(--bd);border-radius:18px;width:100%;max-width:640px;max-height:92vh;overflow:auto;padding:16px;position:relative}
+.box video{width:100%;max-height:60vh;border-radius:12px;background:#000}
+.x{position:absolute;top:10px;right:12px;background:var(--bg);border:1px solid var(--bd);width:34px;height:34px;border-radius:50%;cursor:pointer;z-index:2}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.row>*{flex:1}
+label{display:block;font-size:13px;color:var(--mu);margin:10px 0 4px}
+.lk{display:flex;gap:8px;align-items:center}.lk input{width:auto}
+.item{display:flex;gap:8px;align-items:center;justify-content:space-between;border-top:1px solid var(--bd);padding:8px 0;font-size:14px}
+.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));width:56px;height:56px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 6px 20px rgba(0,0,0,.4);z-index:40;text-decoration:none;font-size:28px}
+.note{font-size:12px;color:var(--mu);margin-top:8px}
+</style></head><body><div class="wrap" style="max-width:720px">
+<header><b style="font-size:20px">⚙ Vid Zone BD · Admin</b><span style="margin-left:auto;display:flex;gap:8px"><a class="btn ghost" href="/">← সাইট</a><button class="btn ghost" id="lo" style="display:none" onclick="sessionStorage.removeItem('vzpw');location.reload()">লগআউট</button></span></header>
+<div id="login" class="box" style="margin:40px auto;max-width:380px"><h3 style="margin-top:0">🔐 Admin লগইন</h3><input id="pwi" type="password" placeholder="Admin পাসওয়ার্ড" onkeydown="if(event.key==='Enter')login()"><div class="row"><button class="btn" onclick="login()">প্রবেশ করুন</button></div><div id="le" class="note" style="color:#ff5a6e"></div></div>
+<div id="ab" class="box" style="display:none"></div></div>
+<script>
+const CT={viral:"Viral",entertainment:"Entertainment",funny:"Funny",music:"Music",emotional:"Emotional"};
+const $=s=>document.getElementById(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+let videos=[],editing=null,cfg=null,pw=sessionStorage.getItem("vzpw")||"";
+const render=()=>{};
+const api=(p,body,adm)=>fetch("/api/"+p,{method:body?"POST":"GET",headers:adm?{"x-admin":pw}:{},body:body?JSON.stringify(body):undefined});
+async function load(){try{videos=await (await api("videos")).json()}catch(e){}}
+const up=(file,kind,st)=>new Promise((ok,no)=>{const fd=new FormData();fd.append("file",file,file.name||"t.jpg");fd.append("upload_preset",cfg.preset);
+ const x=new XMLHttpRequest();x.open("POST",`https://api.cloudinary.com/v1_1/${cfg.cloud}/${kind}/upload`);
+ x.upload.onprogress=e=>{if(e.lengthComputable)st.textContent=(kind==="video"?"ভিডিও":"থাম্বনেইল")+" আপলোড হচ্ছে… "+Math.round(e.loaded/e.total*100)+"%"};
+ x.onload=()=>{try{const d=JSON.parse(x.responseText);d.secure_url?ok(d.secure_url):no(new Error(d.error&&d.error.message||"আপলোড হয়নি"))}catch(e){no(e)}};x.onerror=()=>no(new Error("নেটওয়ার্ক সমস্যা"));x.send(fd)});
+const frame=f=>new Promise(r=>{const v=document.createElement("video");v.muted=true;v.preload="auto";v.src=URL.createObjectURL(f);v.onloadeddata=()=>{v.currentTime=Math.min(1,(v.duration||2)/2)};v.onseeked=()=>{const c=document.createElement("canvas");c.width=360;c.height=Math.round(360*v.videoHeight/v.videoWidth)||202;c.getContext("2d").drawImage(v,0,0,c.width,c.height);c.toBlob(r,"image/jpeg",.8)};v.onerror=()=>r(null)});
+async function openAdmin(e){
+  editing=e?videos.find(x=>x.id===e):null;const v=editing||{type:"long",cat:"viral"};
+ $("ab").innerHTML=`<h3 style="margin:4px 0 0">${editing?"ভিডিও এডিট":"➕ নতুন ভিডিও"}</h3>
+ <label>টাইটেল</label><input id="f_t" value="${esc(v.title)}">
+ <div class="row"><div><label>ক্যাটাগরি</label><select id="f_c">${Object.entries(CT).map(([k,n])=>`<option value="${k}" ${v.cat===k?"selected":""}>${n}</option>`).join("")}</select></div>
+ <div><label>ধরন</label><select id="f_ty"><option value="long" ${v.type==="long"?"selected":""}>Long video</option><option value="short" ${v.type==="short"?"selected":""}>Short video</option></select></div></div>
+ <div class="row"><div><label>মূল্য (৳)</label><input id="f_p" type="number" min="0" value="${esc(v.price)}"></div>
+ <div><label>PIN ${editing&&v.locked?"(খালি রাখলে আগেরটাই থাকবে)":""}</label><input id="f_pin" placeholder="কমপক্ষে ৬ সংখ্যা"></div></div>
+ <div class="lk" style="margin-top:12px"><input type="checkbox" id="f_l" ${v.locked?"checked":""}><span>🔒 Locked (PIN লাগবে / বিক্রয়ের ভিডিও)</span></div>
+ <div class="lk" style="margin-top:8px"><input type="checkbox" id="f_tr" ${v.trending?"checked":""}><span>📈 Trending-এ দেখান</span></div>
+ <label>📁 কম্পিউটার থেকে ভিডিও আপলোড</label><input type="file" id="f_f" accept="video/*">
+ <label>অথবা Google Drive / .mp4 লিংক ${editing&&v.locked?"(খালি রাখলে আগেরটাই থাকবে)":""}</label><input id="f_u" placeholder="https://drive.google.com/file/d/…/view" value="${esc(v.url)}">
+ <div class="note">Drive ফাইলটি "Anyone with the link" শেয়ার করা থাকতে হবে।</div>
+ <label>থাম্বনেইল ছবি (না দিলে ভিডিও থেকে অটো)</label><input type="file" id="f_tf" accept="image/*"><input id="f_th" placeholder="অথবা ছবির লিংক" value="${esc(v.thumb)}" style="margin-top:6px">
+ <div class="row"><button class="btn" id="sv" onclick="submitV()">💾 সেভ করুন</button></div><div id="am_s" class="note"></div>
+ <h3 style="margin-top:22px">সব ভিডিও (${videos.length})</h3>
+ ${videos.map(x=>`<div class="item"><span>${x.locked?"🔒":"🔓"} ${esc(x.title)} <small style="color:var(--mu)">· ${x.type}${x.price?" · ৳"+esc(x.price):""}</small></span><span><button class="btn ghost" onclick="openAdmin('${x.id}')">✎</button> <button class="btn red" onclick="delV('${x.id}')">🗑</button></span></div>`).join("")||'<div class="note">এখনো কোনো ভিডিও নেই।</div>'}`;
+ }
+async function submitV(){
+ const st=$("am_s"),t=$("f_t").value.trim();if(!t){st.textContent="টাইটেল দিন";return}
+ $("sv").disabled=true;st.textContent="সেভ হচ্ছে…";
+ try{
+  const old=editing||{};let url=$("f_u").value.trim(),thumb=$("f_th").value.trim();
+  const f=$("f_f").files[0],tf=$("f_tf").files[0];
+  if(f||tf){if(!cfg)cfg=await (await api("config",null,1)).json();if(!cfg.cloud||!cfg.preset)throw new Error("Cloudinary সেটআপ হয়নি। Netlify-তে CLOUDINARY_CLOUD ও CLOUDINARY_PRESET দিন, অথবা Drive/mp4 লিংক ব্যবহার করুন।")}
+  if(f){url=await up(f,"video",st);if(!tf){const b=await frame(f);if(b)thumb=await up(b,"image",st)}}
+  if(tf)thumb=await up(tf,"image",st);
+  const video={id:old.id||"v"+Date.now(),title:t,cat:$("f_c").value,type:$("f_ty").value,price:$("f_p").value||"",locked:$("f_l").checked,trending:$("f_tr").checked,url,thumb,created:old.created||Date.now()};
+  const r=await api("save",{video,pin:$("f_pin").value.trim()},1);
+  if(!r.ok)throw new Error((await r.json().catch(()=>({}))).error||"সেভ হয়নি");
+  await load();openAdmin();$("am_s").textContent="✅ সেভ হয়েছে"
+ }catch(e){st.textContent="❌ "+(e.message||e);$("sv").disabled=false}}
+async function delV(id){if(!confirm("ভিডিওটি মুছে ফেলবেন?"))return;await api("delete",{id},1);await load();openAdmin()}
+
+
+async function login(){const x=$("pwi").value;if(!x)return;pw=x;let ok=false;try{ok=(await (await api("check",{},1)).json()).ok}catch(e){}
+ if(!ok){pw="";$("le").textContent="❌ ভুল পাসওয়ার্ড";return}
+ sessionStorage.setItem("vzpw",pw);start()}
+async function start(){$("login").style.display="none";$("ab").style.display="";$("lo").style.display="";await load();openAdmin()}
+if(pw)(async()=>{let ok=false;try{ok=(await (await api("check",{},1)).json()).ok}catch(e){}ok?start():(pw="")})();
+</script></body></html>
